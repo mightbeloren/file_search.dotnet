@@ -11,6 +11,8 @@ public class Document
 		public string FilePath {get;set;}=string.Empty;
 		[Required]
 		public DateTime IndexedTime {get;set;}
+		[Required]
+		public int TotalWordsCount {get;set;}
 
 		public ICollection<WordFrequency> WordFrequencies {get;set;}=new List<WordFrequency>();
 }

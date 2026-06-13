@@ -113,24 +113,28 @@ public class Worker : BackgroundService
 
 						//document word frequency dictionary
 						Dictionary<string,int> wordFrequencies=new();
-						//lets only read 300 characters thats enough for a small project i will put this in the appsettings.json in the future to make it configurable
-						char[] buffer=new char[300];
+						//read entire file content to the string
+						string content;
 						using(StreamReader reader=new StreamReader(file))
 						{
-								await reader.ReadAsync(buffer,0,buffer.Length);
+								content=await reader.ReadToEndAsync();
 						}
-						string content=new String(buffer);
 						//now lets lowercase the content then split by spaces and store the words in the dictinoary with their no of frequencies
 						content = content.ToLower();
 						content=content.Replace("\n","");
 						string[] words=content.Split(' ');
-						foreach(string word in words)
+						int totalWordsCount=words.Length;
+						foreach(string word_raw in words)
 						{
-								word.Trim();
+								string word=word_raw.Trim();
+								if(string.IsNullOrWhiteSpace(word))
+								{
+										continue;
+								}
 								//check if that word already exists in the dictionary if yes get it and increment its count then update it if not add it with count 1
 								if(wordFrequencies.TryGetValue(word,out int count))
 								{
-										wordFrequencies[word]=count++;
+										wordFrequencies[word]=count+1;
 								}
 								// word does not exist in the dictionary so Add it with initial count 1
 								else
@@ -159,7 +163,8 @@ public class Worker : BackgroundService
 						{
 								FileName=System.IO.Path.GetFileName(file),
 								FilePath=file,
-								IndexedTime=DateTime.Now
+								IndexedTime=DateTime.Now,
+								TotalWordsCount=totalWordsCount
 						};
 						_context.Documents.Add(newDocument);
 						int result = await _context.SaveChangesAsync();
@@ -187,10 +192,10 @@ public class Worker : BackgroundService
 								}
 						}
 				}
-				// var directories=System.IO.Directory.GetDirectories(DirectoryPath);
-				// foreach(var directory in directories)
-				// {
-				// 		await IndexDirectoriesAsync(directory);
-				// }
+				var directories=System.IO.Directory.GetDirectories(DirectoryPath);
+				foreach(var directory in directories)
+				{
+						await IndexDirectoriesAsync(directory);
+				}
 		}
 }

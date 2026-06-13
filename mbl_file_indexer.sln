@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "indexer", "indexer\indexer.csproj", "{73C542A9-7C3A-46FB-B2EA-EFEC7B938BE7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "searcher", "searcher\searcher.csproj", "{C3DEA601-55F9-458C-AE41-B0A0B8A63527}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{73C542A9-7C3A-46FB-B2EA-EFEC7B938BE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{73C542A9-7C3A-46FB-B2EA-EFEC7B938BE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{73C542A9-7C3A-46FB-B2EA-EFEC7B938BE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3DEA601-55F9-458C-AE41-B0A0B8A63527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3DEA601-55F9-458C-AE41-B0A0B8A63527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3DEA601-55F9-458C-AE41-B0A0B8A63527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3DEA601-55F9-458C-AE41-B0A0B8A63527}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
